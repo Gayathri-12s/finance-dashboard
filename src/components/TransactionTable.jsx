@@ -4,6 +4,7 @@ import { FinanceContext } from "../context/FinanceContext";
 const TransactionTable = ({ showModal }) => {
   const { state, dispatch } = useContext(FinanceContext);
 
+  //  Loading state (mock API simulation)
   if (state.loading)
     return (
       <div className="text-center mt-4">
@@ -14,16 +15,32 @@ const TransactionTable = ({ showModal }) => {
 
   let data = [...state.transactions];
 
-  if (state.filter !== "ALL")
+  // FILTER (Income / Expense)
+  if (state.filter !== "ALL") {
     data = data.filter((t) => t.type === state.filter);
+  }
+
 
   data = data.filter((t) =>
-  t.category.toLowerCase().includes(state.search.toLowerCase()) ||
-  t.type.toLowerCase().includes(state.search.toLowerCase())
-);
+    t.category.toLowerCase().includes(state.search.toLowerCase())
+  );
 
+  //  SORTING
+  if (state.sort === "date") {
+    data.sort((a, b) => new Date(b.date) - new Date(a.date)); // latest first
+  }
+
+  if (state.sort === "amount") {
+    data.sort((a, b) => Number(b.amount) - Number(a.amount)); // highest first
+  }
+
+  
   if (data.length === 0)
-    return <p className="text-center mt-3">No transactions yet 😔</p>;
+    return (
+      <p className="text-center mt-3">
+        No matching transactions 🔍
+      </p>
+    );
 
   return (
     <table className="table table-hover mt-3">
@@ -36,18 +53,27 @@ const TransactionTable = ({ showModal }) => {
           {state.role === "Admin" && <th>Actions</th>}
         </tr>
       </thead>
+
       <tbody>
         {data.map((t) => (
           <tr key={t.id}>
             <td>{t.date}</td>
+
             <td>{t.category}</td>
-            <td className={t.type === "Income" ? "text-success" : "text-danger"}>
+
+            <td
+              className={
+                t.type === "Income" ? "text-success" : "text-danger"
+              }
+            >
               ₹ {t.amount}
             </td>
+
             <td>{t.type}</td>
 
             {state.role === "Admin" && (
               <td>
+               
                 <button
                   className="btn btn-warning btn-sm me-2"
                   onClick={() =>
@@ -57,6 +83,7 @@ const TransactionTable = ({ showModal }) => {
                   Edit
                 </button>
 
+             
                 <button
                   className="btn btn-danger btn-sm"
                   onClick={() =>
