@@ -1,0 +1,135 @@
+body {
+  background: #f5f7fa;
+}
+
+/* CARD */
+.card {
+  border-radius: 14px;
+  border: none;
+  transition: 0.25s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* DARK MODE (CLEAN) */
+.dark {
+  background: #121212;
+  color: white;
+  min-height: 100vh;
+}
+
+/* Cards */
+.dark .card {
+  background: #1e1e1e;
+}
+
+/* Table */
+.dark .table {
+  color: white;
+}
+
+.dark .table th {
+  background: #2a2a2a;
+}
+
+/* Fix Bootstrap muted text */
+.dark .text-muted {
+  color: #bbb !important;
+}
+
+/* Inputs */
+.dark input,
+.dark select {
+  background: #2a2a2a;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark input::placeholder {
+  color: #aaa;
+}
+
+/* Button hover */
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal-backdrop-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 320px;
+}
+
+.dark .modal-box {
+  background: #1e1e1e;
+  color: white;
+}
+
+
+/* DARK MODE (CLEAN + FIXED) */
+.dark {
+  background: #121212;
+  color: white;
+  min-height: 100vh;
+}
+
+/* Cards */
+.dark .card {
+  background: #1e1e1e;
+  color: white;
+}
+
+/* Table */
+.dark .table {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark .table th {
+  background: #2a2a2a;
+  color: white;
+}
+
+.dark .table td {
+  background: #1e1e1e;
+  color: white;
+}
+
+/* Fix muted text */
+.dark .text-muted {
+  color: #bbb !important;
+}
+
+/* 🔥 INPUT FIX (IMPORTANT) */
+.dark input {
+  background: #2a2a2a !important;
+  color: white !important;
+  border: 1px solid #555;
+}
+
+.dark input::placeholder {
+  color: #aaa;
+}
+
+.dark select {
+  background: #2a2a2a !important;
+  color: white !important;
+}
