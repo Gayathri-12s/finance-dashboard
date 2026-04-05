@@ -11,7 +11,7 @@ const Filters = () => {
         <div className="col-md-4">
           <input
             className="form-control"
-            placeholder="Search (Food, Income...)"
+            placeholder="Search (Category)"
             value={state.search}
             onChange={(e) =>
               dispatch({ type: "SET_SEARCH", payload: e.target.value })

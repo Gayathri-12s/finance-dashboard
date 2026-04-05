@@ -27,11 +27,11 @@ const TransactionTable = ({ showModal }) => {
 
   //  SORTING
   if (state.sort === "date") {
-    data.sort((a, b) => new Date(b.date) - new Date(a.date)); // latest first
+    data.sort((a, b) => new Date(b.date) - new Date(a.date)); 
   }
 
   if (state.sort === "amount") {
-    data.sort((a, b) => Number(b.amount) - Number(a.amount)); // highest first
+    data.sort((a, b) => Number(b.amount) - Number(a.amount)); 
   }
 
   

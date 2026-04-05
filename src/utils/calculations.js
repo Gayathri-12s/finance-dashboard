@@ -36,7 +36,7 @@ export const topCategory = (transactions) => {
 };
 
 // compare last 2 months transcations
-// compare spending between last 2 months
+
 export const monthlyComparison = (transactions) => {
   if (transactions.length === 0) return "No data";
 
