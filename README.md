@@ -247,5 +247,5 @@ It reflects a practical and structured approach to building modern web applicati
 
 ## 🔗 (Optional)
 
-* Live Demo: *Add if deployed*
-* GitHub Repo: *Add link*
+* Live Demo: https://finance-dashboard-coral-one.vercel.app
+* GitHub Repo: https://github.com/Gayathri-12s/finance-dashboard.git
