@@ -20,6 +20,7 @@ export const monthlyData = (transactions) => {
     }));
 };
 
+
 // prepare category-wise expense data for pie chart
 export const categoryData = (transactions) => {
   const map = {};
@@ -27,11 +28,14 @@ export const categoryData = (transactions) => {
   transactions
     .filter((t) => t.type === "Expense")
     .forEach((t) => {
-      map[t.category] = (map[t.category] || 0) + t.amount;
+      const category = t.category.toLowerCase().trim(); 
+      const amount = Number(t.amount);
+
+      map[category] = (map[category] || 0) + amount;
     });
 
   return Object.keys(map).map((c) => ({
-    name: c,
+    name: c.charAt(0).toUpperCase() + c.slice(1), // clean UI
     value: map[c],
   }));
 };
