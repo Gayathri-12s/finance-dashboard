@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { FinanceContext } from "../context/FinanceContext";
 
-const TransactionForm = () => {
+const TransactionForm = ({ showModal }) => {
   const { state, dispatch } = useContext(FinanceContext);
 
   const [form, setForm] = useState({
@@ -17,17 +17,34 @@ const TransactionForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.amount || !form.category || !form.date) return;
 
+    // 🔥 VALIDATION USING DASHBOARD MODAL
+    if (!form.date || !form.category || !form.amount) {
+      showModal("Please fill all fields");
+      return;
+    }
+
+    if (Number(form.amount) <= 0) {
+      showModal("Amount must be greater than 0");
+      return;
+    }
+
+    // ✅ EDIT
     if (state.editItem) {
       dispatch({ type: "UPDATE", payload: form });
     } else {
+     
       dispatch({
         type: "ADD",
-        payload: { ...form, id: Date.now(), amount: +form.amount },
+        payload: {
+          ...form,
+          id: Date.now(),
+          amount: Number(form.amount),
+        },
       });
     }
 
+  
     setForm({ date: "", amount: "", category: "", type: "Expense" });
   };
 
@@ -35,24 +52,29 @@ const TransactionForm = () => {
     <form className="card p-3 mt-3" onSubmit={handleSubmit}>
       <h6>{state.editItem ? "✏️ Edit Transaction" : "➕ Add Transaction"}</h6>
 
-      <input className="form-control mb-2" type="date"
+      <input
+        className="form-control mb-2"
+        type="date"
         value={form.date}
         onChange={(e) => setForm({ ...form, date: e.target.value })}
       />
 
-      <input className="form-control mb-2"
+      <input
+        className="form-control mb-2"
         placeholder="Amount (₹)"
         value={form.amount}
         onChange={(e) => setForm({ ...form, amount: e.target.value })}
       />
 
-      <input className="form-control mb-2"
+      <input
+        className="form-control mb-2"
         placeholder="Category (Food, Travel...)"
         value={form.category}
         onChange={(e) => setForm({ ...form, category: e.target.value })}
       />
 
-      <select className="form-select mb-2"
+      <select
+        className="form-select mb-2"
         value={form.type}
         onChange={(e) => setForm({ ...form, type: e.target.value })}
       >

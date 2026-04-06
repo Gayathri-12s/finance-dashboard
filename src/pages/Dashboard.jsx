@@ -82,12 +82,14 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* FORM */}
+       {/* FORM */}
       {state.role === "Admin" && (
         <div className="mt-4">
-          <TransactionForm />
+          {/* 🔥 PASS showModal HERE */}
+          <TransactionForm showModal={showModal} />
         </div>
       )}
+
 
       {/* FILTERS */}
       <div className="mt-4">
